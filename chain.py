@@ -13,7 +13,7 @@ class Blockain:
 
    def add_block(self, new_block):
       new_block.previous_hash = self.get_latest_block().hash
-      new_block.hash = new_block.calculate_hash()
+      new_block.hash = new_block.calc_hash()
       self.chain.append(new_block)
 
    def is_valid(self):
