@@ -1,4 +1,3 @@
-import hashlib
 import datetime as date
 from block import Block
 
@@ -29,4 +28,3 @@ class Blockain:
             return False
 
       return True
-
