@@ -1,7 +1,7 @@
 import argparse
 from chain import Blockain
 from block import Block
-from logger import Logger
+from writer import Writer
 import datetime as dt
 
 # TO DO:
@@ -28,9 +28,9 @@ def main():
    # Print as CSV
    print(str(block.index) + "," + str(block.timestamp) + "," + str(block.data) + "," + str(block.previous_hash))
    log_entry = str(block.index) + "," + str(block.timestamp) + "," + str(block.data) + "," + str(block.previous_hash)
-
-   logger = Logger(log_entry, "./log/chain_log.csv")
-   logger.write_log()
+   
+   cw = Writer(log_entry, "./log/chain_log.csv")
+   cw.write_chain()
 
 
 
