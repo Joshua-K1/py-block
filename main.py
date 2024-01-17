@@ -2,15 +2,16 @@ import argparse
 from chain import Blockain
 from block import Block
 from writer import Writer
+from logger import Logger
 import datetime as dt
 
-# TO DO:
-# New Block hash needs to be generated before dict is added to chain
-# Dict to be converted to json object and then dumped to file
+#@TO DO:New Block hash needs to be generated before dict is added to chain
 
 def main():
    # Create new blockchain
    blockchain = Blockain()
+   logger = Logger()
+   logger.write_log()
 
    block = Block(4, dt.datetime.now(), "Transaction 4", "")
    block = block.return_dict()
@@ -29,11 +30,8 @@ def main():
    print(str(block.index) + "," + str(block.timestamp) + "," + str(block.data) + "," + str(block.previous_hash))
    log_entry = str(block.index) + "," + str(block.timestamp) + "," + str(block.data) + "," + str(block.previous_hash)
    
-   cw = Writer(log_entry, "./log/chain_log.csv")
+   cw = Writer(log_entry, "./log/chain.csv")
    cw.write_chain()
-
-
-
 
 if __name__ == "__main__":
    # parser = argparse.ArgumentParser(description="Process external arguments")

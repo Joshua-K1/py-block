@@ -13,7 +13,6 @@ class Block:
 
       return hashlib.sha256(hash_string.encode()).hexdigest()
 
-
    def return_dict(self):
       dict = {
       "Index": str(self.index),

@@ -7,7 +7,6 @@ class Writer:
       self.entry = entry
       self.log_file = log_file
 
-
    def write_chain(self) -> None:
       if os.path.exists(self.log_file) and os.path.getsize(self.log_file) == 0:
          print("File exists and has a size of 0")
@@ -23,6 +22,3 @@ class Writer:
       else:
          print("File does not exist")
          # End
-
-      
-
