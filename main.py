@@ -1,7 +1,7 @@
 import argparse
 from chain import Blockain
 from block import Block
-from writer import Writer
+from writer import write_chain
 import datetime as dt
 from logger import event_logger
 
@@ -29,8 +29,7 @@ def main():
    print(str(block.index) + "," + str(block.timestamp) + "," + str(block.data) + "," + str(block.previous_hash))
    log_entry = str(block.index) + "," + str(block.timestamp) + "," + str(block.data) + "," + str(block.previous_hash)
    
-   cw = Writer(log_entry, "./log/chain.csv")
-   cw.write_chain()
+   write_chain()
 
 
 if __name__ == "__main__":
