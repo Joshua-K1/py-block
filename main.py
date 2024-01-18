@@ -3,14 +3,14 @@ from chain import Blockain
 from block import Block
 from writer import Writer
 import datetime as dt
-from logger import api_logger
+from logger import event_logger
 
 #@TO DO:New Block hash needs to be generated before dict is added to chain
 
 def main():
    # Create new blockchain
    blockchain = Blockain()
-   api_logger.info('This is a test line')
+   event_logger.info('This is a test line')
 
    block = Block(4, dt.datetime.now(), "Transaction 4", "")
    block = block.return_dict()

@@ -1,4 +1,3 @@
-from os import walk
 import sys 
 import logging
 from logging.config import dictConfig
@@ -16,10 +15,10 @@ logging_config = dict(
         },
     },
     handlers={
-        'api-logger': {'class': 'logging.handlers.RotatingFileHandler',
+        'event-logger': {'class': 'logging.handlers.RotatingFileHandler',
                            'formatter': 'verbose',
                            'level': logging.DEBUG,
-                           'filename': 'logs/api.log',
+                           'filename': 'logs/events.log',
                            'maxBytes': 52428800,
                            'backupCount': 7},
         'batch-process-logger': {'class': 'logging.handlers.RotatingFileHandler',
@@ -36,8 +35,8 @@ logging_config = dict(
         },
     },
     loggers={
-        'api_logger': {
-            'handlers': ['api-logger', 'console'],
+        'event_logger': {
+            'handlers': ['event-logger', 'console'],
             'level': logging.DEBUG
         },
         'batch_process_logger': {
@@ -52,5 +51,5 @@ except:
    print("Failed to open log file, make sure the /logs directory exists and has the correct permissions")
    
 
-api_logger = logging.getLogger('api_logger')
+event_logger = logging.getLogger('event_logger')
 batch_process_logger = logging.getLogger('batch_process_logger')
