@@ -1,3 +1,4 @@
+from os import walk
 import sys 
 import logging
 from logging.config import dictConfig
@@ -45,8 +46,11 @@ logging_config = dict(
         }
     }
 )
-
-dictConfig(logging_config)
+try:
+   dictConfig(logging_config)
+except:
+   print("Failed to open log file, make sure the /logs directory exists and has the correct permissions")
+   
 
 api_logger = logging.getLogger('api_logger')
 batch_process_logger = logging.getLogger('batch_process_logger')
