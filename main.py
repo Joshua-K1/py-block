@@ -5,7 +5,9 @@ from writer import write_chain
 import datetime as dt
 from logger import event_logger
 
-#@TO DO:New Block hash needs to be generated before dict is added to chain
+#@TO DO: New Block hash needs to be generated before dict is added to chain
+#@TO DO: Check chain file on each add / remove operation
+#@TO DO: If no content bar headers is present, add genesis block
 
 def main():
    # Create new blockchain
@@ -16,8 +18,6 @@ def main():
    block = block.return_dict()
 
    blockchain.add_block(Block(1, dt.datetime.now(), "Transaction 1", ""))
-   blockchain.add_block(Block(2, dt.datetime.now(), "Transaction 2", ""))
-   blockchain.add_block(Block(3, dt.datetime.now(), "Transaction 3", ""))
 
    for block in blockchain.chain: 
     print("Block #: " + str(block.index)) 
@@ -28,8 +28,10 @@ def main():
    # Print as CSV
    print(str(block.index) + "," + str(block.timestamp) + "," + str(block.data) + "," + str(block.previous_hash))
    log_entry = str(block.index) + "," + str(block.timestamp) + "," + str(block.data) + "," + str(block.previous_hash)
+
+   chain_log_test = ('this', 'is', 'a', 'test')
    
-   write_chain()
+   write_chain(chain_log_test)
 
 
 if __name__ == "__main__":
