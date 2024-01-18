@@ -2,16 +2,15 @@ import argparse
 from chain import Blockain
 from block import Block
 from writer import Writer
-from logger import Logger
 import datetime as dt
+from logger import api_logger
 
 #@TO DO:New Block hash needs to be generated before dict is added to chain
 
 def main():
    # Create new blockchain
    blockchain = Blockain()
-   logger = Logger()
-   logger.write_log()
+   api_logger.info('This is a test line')
 
    block = Block(4, dt.datetime.now(), "Transaction 4", "")
    block = block.return_dict()
@@ -32,6 +31,7 @@ def main():
    
    cw = Writer(log_entry, "./log/chain.csv")
    cw.write_chain()
+
 
 if __name__ == "__main__":
    # parser = argparse.ArgumentParser(description="Process external arguments")

@@ -1,24 +1,52 @@
-import os
-import datetime
+import sys 
+import logging
+from logging.config import dictConfig
 
-#@TODO: Parser argument for specifying a log file location
+logging_config = dict(
+    version=1,
+    formatters={
+        'verbose': {
+            'format': ("[%(asctime)s] %(levelname)s "
+                       "[%(name)s:%(lineno)s] %(message)s"),
+            'datefmt': "%d/%b/%Y %H:%M:%S",
+        },
+        'simple': {
+            'format': '%(levelname)s %(message)s',
+        },
+    },
+    handlers={
+        'api-logger': {'class': 'logging.handlers.RotatingFileHandler',
+                           'formatter': 'verbose',
+                           'level': logging.DEBUG,
+                           'filename': 'logs/api.log',
+                           'maxBytes': 52428800,
+                           'backupCount': 7},
+        'batch-process-logger': {'class': 'logging.handlers.RotatingFileHandler',
+                             'formatter': 'verbose',
+                             'level': logging.DEBUG,
+                             'filename': 'logs/batch.log',
+                             'maxBytes': 52428800,
+                             'backupCount': 7},
+        'console': {
+            'class': 'logging.StreamHandler',
+            'level': 'DEBUG',
+            'formatter': 'simple',
+            'stream': sys.stdout,
+        },
+    },
+    loggers={
+        'api_logger': {
+            'handlers': ['api-logger', 'console'],
+            'level': logging.DEBUG
+        },
+        'batch_process_logger': {
+            'handlers': ['batch-process-logger', 'console'],
+            'level': logging.DEBUG
+        }
+    }
+)
 
-class Logger:
-   def __init__(self, location=None, date=None):
-      if location is None: location = "./log/log.json"
-      self.location = location
+dictConfig(logging_config)
 
-      if date is None: date = datetime.datetime.now()
-      self.date = date
-
-   def log_file_check(self) -> bool:
-      if os.path.exists(str(self.location)):
-         return True
-      else: 
-         return False
-   
-   def write_log(self) -> None: 
-      if self.log_file_check(): 
-         print("File exists, can write log")
-      else: 
-         print("File doesn't exist")
+api_logger = logging.getLogger('api_logger')
+batch_process_logger = logging.getLogger('batch_process_logger')

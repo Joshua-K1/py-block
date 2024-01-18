@@ -2,3 +2,4 @@ __pycache__
 __pycache__/*
 __pycache__/block.cpython-311.pyc
 *.csv
+logs/
