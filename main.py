@@ -5,10 +5,6 @@ from writer import write_chain
 import datetime as dt
 from logger import event_logger
 
-#@TO DO: New Block hash needs to be generated before dict is added to chain
-#@TO DO: Check chain file on each add / remove operation
-#@TO DO: If no content bar headers is present, add genesis block
-
 def main():
    # Create new blockchain
    blockchain = Blockain()
