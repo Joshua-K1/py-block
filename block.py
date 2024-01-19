@@ -1,5 +1,10 @@
 import hashlib
 
+
+#@TO DO: New Block hash needs to be generated before dict is added to chain
+#@TO DO: Check chain file on each add / remove operation
+#@TO DO: If no content bar headers is present, add genesis block
+
 class Block: 
    def __init__(self, index, timestamp, data, previous_hash):
       self.index = index
