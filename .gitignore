@@ -4,3 +4,4 @@ __pycache__/block.cpython-311.pyc
 *.csv
 logs/
 log/
+chain/
