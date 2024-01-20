@@ -86,12 +86,10 @@ def return_last_block():
          contents = json.loads(data.read())
          event_logger.info("Opening chain file")
 
-   except ValueError as err:
+         last_block = contents["blocks"][-1]
+         return last_block
+
+   except (ValueError, FileNotFoundError) as err:
       event_logger.error(err)
       event_logger.info("Unable to read chain, chain is invalid")
-      return False # @TODO: Maybe not return False and an object in the same func? Bad Practice?
-
-   last_block = contents["blocks"][-1]
-
-   return last_block
 
