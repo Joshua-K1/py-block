@@ -22,9 +22,10 @@ def establish_chain():
       event_logger.info("Chain exists and has a size greater than 0")
       # Read in file, read previous block and append new block
 
+      validate_chain_json(chain_file)
    else: 
       event_logger.info("Chain file does not exist")
-      # Creat file?
+      # Create file?
 
 def create_genesis_block():
    block = {
@@ -35,3 +36,14 @@ def create_genesis_block():
       }
 
    return block
+
+def validate_chain_json(chainData):
+   try:
+      with open(chainData, 'r') as data:
+         contents = json.loads(data.read())
+         print(contents)
+
+   except ValueError as err:
+      event_logger.error(err)
+      return False
+   return True
