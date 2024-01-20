@@ -4,7 +4,7 @@ import datetime as date
 import json
 import os 
 
-chain_file = './chain/chain_test.json'
+chain_file = './chain/chain.json'
 
 def establish_chain():
    event_logger.info("Establishing if chain exists")
@@ -24,22 +24,27 @@ def establish_chain():
       # Read in file, validate that json is valid
       chain_file_data = validate_chain_json(chain_file)
 
+      # If chain is valid, do this
       if (chain_file_data):
          list_chain_block(chain_file_data)
+
+      # find the last block in the chain
+      # count the number of blocks in the chain and take the last one
+
 
    else: 
       event_logger.info("Chain file does not exist")
       # Create file?
 
 def create_genesis_block():
-   block = {
-         "index": 0,
-         "date": str(date.datetime.now()),
-         "data": "Genesis Block",
-         "prev_hash": "0"
-      }
-   
-   return block
+
+   initial_block = {
+      "blocks": [
+         {"index": 0, "date": str(date.datetime.now()), "data": "Genesis Block", "prev_hash": "0"}
+      ]
+   }
+
+   return initial_block
 
 def validate_chain_json(chain_data):
    event_logger.info("Validating chain")
