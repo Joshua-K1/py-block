@@ -13,6 +13,11 @@ def establish_chain():
       event_logger.info("Chain file exists but is empty")
       # Read in file and create genesis block
 
+      with open(chain_file, 'a') as file:
+         json.dump(create_genesis_block(), file, indent=4)
+
+      event_logger.info("Written genesis block to chain file")
+
    elif os.path.exists(chain_file) and os.path.getsize(chain_file) > 0:
       event_logger.info("Chain exists and has a size greater than 0")
       # Read in file, read previous block and append new block
