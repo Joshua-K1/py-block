@@ -8,7 +8,6 @@ from logger import event_logger
 def main():
    # Create new blockchain
    blockchain = Blockain()
-   event_logger.info('This is a test line')
 
    block = Block(4, dt.datetime.now(), "Transaction 4", "")
    block = block.return_dict()
@@ -22,12 +21,25 @@ def main():
     print("Prev Hash: " + str(block.previous_hash)) 
 
    # Print as CSV
-   print(str(block.index) + "," + str(block.timestamp) + "," + str(block.data) + "," + str(block.previous_hash))
-   log_entry = str(block.index) + "," + str(block.timestamp) + "," + str(block.data) + "," + str(block.previous_hash)
+    print(str(block.index) + "," + str(block.timestamp) + "," + str(block.data) + "," + str(block.previous_hash))
+    log_entry = str(block.index) + "," + str(block.timestamp) + "," + str(block.data) + "," + str(block.previous_hash)
 
    chain_log_test = ('this', 'is', 'a', 'test')
+
+   # Convert chain object to dict
+
+   dict = {
+      "index":"" ,
+      "timestamp": "",
+      "data": "",
+      "previous_hash": ""
+   }
+
+
+   # Convert dict to json and paste to file
    
    write_chain(chain_log_test)
+   event_logger.info('Written to chain file')
 
 
 if __name__ == "__main__":
