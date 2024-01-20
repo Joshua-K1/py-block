@@ -47,19 +47,19 @@ def create_genesis_block():
    return initial_block
 
 
-def validate_chain_json(chain_data):
+def validate_chain_json(chain_data) -> bool:
    event_logger.info("Validating chain")
    try:
       with open(chain_data, 'r') as data:
-         contents = json.loads(data.read())
+         _ = json.loads(data.read())
          event_logger.info("Chain is valid")
 
-   except ValueError as err:
+         return True
+
+   except (ValueError, FileNotFoundError) as err:
       event_logger.error(err)
       event_logger.info("Chain is invalid")
-      return False # @TODO: Maybe not return False and an object in the same func? Bad Practice?
-
-   return contents
+      return False
 
 
 def list_chain_blocks():
@@ -70,11 +70,10 @@ def list_chain_blocks():
          contents = json.loads(data.read())
          event_logger.info("Opening chain file")
 
-
       for block in contents["blocks"]:
          print(block)
 
-   except ValueError as err:
+   except (ValueError, FileNotFoundError) as err:
       event_logger.error(err)
       event_logger.info("Unable to read chain, chain is invalid")
 

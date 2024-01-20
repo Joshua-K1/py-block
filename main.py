@@ -1,18 +1,14 @@
 import argparse
 import datetime as dt
-from chain_ops import establish_chain, return_last_block 
+from chain_ops import establish_chain, return_last_block, list_chain_blocks
+from cryptography import calc_hash 
 
 def main():
-   # Create new blockchain
-   
-   # Check that chain exists
-   chain_file_data = establish_chain()
 
-   # Return last block
-   last_block = return_last_block()
-   print(last_block)
+   list_chain_blocks()
 
-
+   hash_string = calc_hash(return_last_block())
+   print(hash_string)
 
 
 
