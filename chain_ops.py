@@ -4,7 +4,7 @@ import datetime as date
 import json
 import os 
 
-chain_file = './chain/chain.json'
+chain_file = './chain/chain_test.json'
 
 def establish_chain():
    event_logger.info("Establishing if chain exists")
@@ -59,6 +59,6 @@ def validate_chain_json(chain_data):
 def list_chain_block(chain_data_valid):
    event_logger.info("Listing blocks currently in chain")
 
-   for block in chain_data_valid.items():
+   for block in chain_data_valid["blocks"]:
       print(block)
    
