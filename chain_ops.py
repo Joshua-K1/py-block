@@ -4,6 +4,9 @@ import datetime as date
 import json
 import os 
 
+# @TODO: Function to add new block
+# @TODO: Function to search chain items for specific phrases
+
 chain_file = './chain/chain_test.json'
 
 
