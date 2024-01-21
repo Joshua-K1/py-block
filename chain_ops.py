@@ -1,5 +1,5 @@
-from hashlib import new
 from writer import write_chain
+from cryptography import calc_hash
 from logger import event_logger
 import datetime as date
 import json
@@ -105,6 +105,12 @@ def add_block():
       last_block_index = last_block["index"]
       
       new_block_index = last_block_index + 1
+      new_block_data = "Data to be passed from argparse"
+      new_block_date = str(date.datetime.now())
+      previous_block_hash = last_block["prev_hash"]
 
-      print(last_block["index"])
+      new_block_hash = calc_hash(str(new_block_index), new_block_data, new_block_date, previous_block_hash)
+
+      print(new_block_hash)
+
 
