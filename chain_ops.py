@@ -105,13 +105,6 @@ def add_block():
       last_block_index = last_block["index"]
       
       new_block_index = last_block_index + 1
-      print(new_block_index)
 
       print(last_block["index"])
-
-   # Get index of last block
-   # Get current date
-   # Pass block data
-   # Calculate previous block hash
-
 
