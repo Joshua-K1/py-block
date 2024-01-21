@@ -1,3 +1,4 @@
+from hashlib import new
 from writer import write_chain
 from logger import event_logger
 import datetime as date
@@ -94,4 +95,23 @@ def return_last_block():
    except (ValueError, FileNotFoundError) as err:
       event_logger.error(err)
       event_logger.info("Unable to read chain, chain is invalid")
+
+
+def add_block():
+   print("Add block function")
+   last_block = return_last_block()
+
+   if last_block is not None:
+      last_block_index = last_block["index"]
+      
+      new_block_index = last_block_index + 1
+      print(new_block_index)
+
+      print(last_block["index"])
+
+   # Get index of last block
+   # Get current date
+   # Pass block data
+   # Calculate previous block hash
+
 

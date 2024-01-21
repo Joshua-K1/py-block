@@ -1,10 +1,11 @@
 import argparse
 import datetime as dt
-from chain_ops import establish_chain, return_last_block, list_chain_blocks
+from chain_ops import establish_chain, return_last_block, list_chain_blocks, add_block
 from cryptography import calc_hash 
 
 def main():
    list_chain_blocks()
+   add_block()
 
    hash_string = calc_hash(return_last_block())
    print(hash_string)
