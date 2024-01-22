@@ -16,7 +16,7 @@ def establish_chain() -> bool:
 
    if os.path.exists(chain_file) and os.path.getsize(chain_file) == 0:
       event_logger.info("Chain file exists but is empty")
-      # Read in file and create genesis block
+# Read in file and create genesis block
 
       with open(chain_file, 'a') as file:
          json.dump(create_genesis_block(), file, indent=4)
@@ -111,9 +111,13 @@ def add_block():
 
       new_block_hash = calc_hash(str(new_block_index), new_block_data, new_block_date, previous_block_hash)
 
-      try:
-         with open(chain_file, 'a') as err: 
-   
+      new_block = {
+         "index": new_block_index,
+         "date": new_block_date,
+         "data": "new block date",
+         "hash": new_block_hash
+      }
+  
 
       print(new_block_hash)
 
