@@ -1,5 +1,3 @@
-from hashlib import new
-from writer import write_chain
 from cryptography import calc_hash
 from logger import event_logger
 import datetime as date
@@ -98,7 +96,6 @@ def return_last_block():
 
 
 def add_block():
-   print("Add block function")
    last_block = return_last_block()
 
    if last_block is not None:
@@ -129,7 +126,5 @@ def add_block():
       except (ValueError, FileNotFoundError) as err:
 
          event_logger.error(err)
-
-      print(new_block_hash)
 
 
