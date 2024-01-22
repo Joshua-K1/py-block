@@ -14,7 +14,7 @@ def establish_chain() -> bool:
 
    if os.path.exists(chain_file) and os.path.getsize(chain_file) == 0:
       event_logger.info("Chain file exists but is empty")
-      # Read in file and create genesis block
+      event_logger.info("Creating Genesis block.")
 
       with open(chain_file, 'a') as file:
          json.dump(create_genesis_block(), file, indent=4)
@@ -66,7 +66,6 @@ def validate_chain_json(chain_data) -> bool:
 
 def list_chain_blocks():
    event_logger.info("Listing blocks currently in chain")
-
    try:
       with open(chain_file, 'r') as data:
          contents = json.loads(data.read())
@@ -77,8 +76,7 @@ def list_chain_blocks():
 
    except (ValueError, FileNotFoundError) as err:
       event_logger.error(err)
-      event_logger.info("Unable to read chain, chain is invalid")
-
+      event_logger.error("Failed to read chain file, chain structure is invalid or file does not exist.")
 
 def return_last_block():
    event_logger.info("Getting last block in chain")
@@ -86,28 +84,26 @@ def return_last_block():
       with open(chain_file, 'r') as data:
          contents = json.loads(data.read())
          event_logger.info("Opening chain file")
-
          last_block = contents["blocks"][-1]
+
          return last_block
 
    except (ValueError, FileNotFoundError) as err:
       event_logger.error(err)
-      event_logger.info("Unable to read chain, chain is invalid")
+      event_logger.error("Failed to read chain file, chain structure is invalid or file does not exist.")
 
 
 def add_block():
+   event_logger.info("Adding new block to chain.")
    last_block = return_last_block()
 
    if last_block is not None:
       last_block_index = last_block["index"]
-      
       new_block_index = last_block_index + 1
       new_block_data = "Data to be passed from argparse"
       new_block_date = str(date.datetime.now())
       previous_block_hash = last_block["hash"]
-
       new_block_hash = calc_hash(str(new_block_index), new_block_data, new_block_date, previous_block_hash)
-
       new_block = {
          "index": new_block_index,
          "date": new_block_date,
@@ -124,7 +120,6 @@ def add_block():
             json.dump(blockchain, file, indent=4)
 
       except (ValueError, FileNotFoundError) as err:
-
          event_logger.error(err)
-
+         event_logger.error("Failed to read chain file, chain structure is invalid or file does not exist.")
 
