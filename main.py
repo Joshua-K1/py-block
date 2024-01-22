@@ -1,7 +1,5 @@
 import argparse
-import datetime as dt
-from chain_ops import establish_chain, return_last_block, list_chain_blocks, add_block
-from cryptography import calc_hash 
+from chain_ops import list_chain_blocks, add_block
 
 def main():
    list_chain_blocks()

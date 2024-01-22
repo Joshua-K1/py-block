@@ -5,3 +5,4 @@ __pycache__/block.cpython-311.pyc
 logs/
 log/
 chain/
+*.todo
