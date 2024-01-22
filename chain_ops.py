@@ -1,3 +1,4 @@
+from hashlib import new
 from writer import write_chain
 from cryptography import calc_hash
 from logger import event_logger
@@ -117,7 +118,15 @@ def add_block():
          "data": "new block date",
          "hash": new_block_hash
       }
-  
+
+      with open(chain_file, 'r') as file:
+         blockchain = json.load(file)
+
+      blockchain['blocks'].append(new_block)
+
+
+      with open(chain_file, 'w') as file:
+         json.dump(blockchain, file, indent=4)
 
       print(new_block_hash)
 
