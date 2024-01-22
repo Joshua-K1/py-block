@@ -6,7 +6,6 @@ import datetime as date
 import json
 import os 
 
-# @TODO: Function to add new block
 # @TODO: Function to search chain items for specific phrases
 
 chain_file = './chain/chain_test.json'
@@ -17,7 +16,7 @@ def establish_chain() -> bool:
 
    if os.path.exists(chain_file) and os.path.getsize(chain_file) == 0:
       event_logger.info("Chain file exists but is empty")
-# Read in file and create genesis block
+      # Read in file and create genesis block
 
       with open(chain_file, 'a') as file:
          json.dump(create_genesis_block(), file, indent=4)
@@ -119,14 +118,17 @@ def add_block():
          "hash": new_block_hash
       }
 
-      with open(chain_file, 'r') as file:
-         blockchain = json.load(file)
+      try:
+         with open(chain_file, 'r') as file:
+            blockchain = json.load(file)
+            blockchain['blocks'].append(new_block)
 
-      blockchain['blocks'].append(new_block)
+         with open(chain_file, 'w') as file:
+            json.dump(blockchain, file, indent=4)
 
+      except (ValueError, FileNotFoundError) as err:
 
-      with open(chain_file, 'w') as file:
-         json.dump(blockchain, file, indent=4)
+         event_logger.error(err)
 
       print(new_block_hash)
 
