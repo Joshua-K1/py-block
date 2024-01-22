@@ -45,7 +45,7 @@ def establish_chain() -> bool:
 def create_genesis_block():
    initial_block = {
       "blocks": [
-         {"index": 0, "date": str(date.datetime.now()), "data": "Genesis Block", "prev_hash": "0"}
+         {"index": 0, "date": str(date.datetime.now()), "data": "Genesis Block", "hash": "0"}
       ]
    }
 
@@ -108,14 +108,14 @@ def add_block():
       new_block_index = last_block_index + 1
       new_block_data = "Data to be passed from argparse"
       new_block_date = str(date.datetime.now())
-      previous_block_hash = last_block["prev_hash"]
+      previous_block_hash = last_block["hash"]
 
       new_block_hash = calc_hash(str(new_block_index), new_block_data, new_block_date, previous_block_hash)
 
       new_block = {
          "index": new_block_index,
          "date": new_block_date,
-         "data": "new block date",
+         "data": new_block_data,
          "hash": new_block_hash
       }
 
