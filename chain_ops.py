@@ -111,6 +111,10 @@ def add_block():
 
       new_block_hash = calc_hash(str(new_block_index), new_block_data, new_block_date, previous_block_hash)
 
+      try:
+         with open(chain_file, 'a') as err: 
+   
+
       print(new_block_hash)
 
 
