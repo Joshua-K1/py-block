@@ -92,14 +92,14 @@ def return_last_block():
       event_logger.error("Failed to read chain file, chain structure is invalid or file does not exist.")
 
 
-def add_block():
+def add_block(blockData):
    event_logger.info("Adding new block to chain.")
    last_block = return_last_block()
 
    if last_block is not None:
       last_block_index = last_block["index"]
       new_block_index = last_block_index + 1
-      new_block_data = "Data to be passed from argparse"
+      new_block_data = str(blockData)
       new_block_date = str(date.datetime.now())
       previous_block_hash = last_block["hash"]
       new_block_hash = calc_hash(str(new_block_index), new_block_data, new_block_date, previous_block_hash)
