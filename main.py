@@ -9,7 +9,6 @@ def main(args):
          print("No block data supplied")
       else:
          add_block(args.blockData)
-
    if args.establishChain:
       establish_chain()
 
