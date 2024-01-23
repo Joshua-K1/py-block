@@ -8,7 +8,6 @@ import os
 
 chain_file = './chain/chain_test.json'
 
-
 def establish_chain() -> bool:
    event_logger.info("Establishing if chain exists")
 
