@@ -1,12 +1,13 @@
 from cryptography import calc_hash
 from logger import event_logger
 import datetime as date
+from typing import Dict
 import json
 import os 
 
 # @TODO: Function to search chain items for specific phrases
 
-chain_file = './chain/chain_test.json'
+chain_file = './chain/chain.json'
 
 def establish_chain() -> bool:
    event_logger.info("Establishing if chain exists")
@@ -38,7 +39,7 @@ def establish_chain() -> bool:
       return False
 
 
-def create_genesis_block():
+def create_genesis_block() -> Dict:
    initial_block = {
       "blocks": [
          {"index": 0, "date": str(date.datetime.now()), "data": "Genesis Block", "hash": "0"}
