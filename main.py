@@ -12,7 +12,6 @@ def main(args):
    if args.establishChain:
       establish_chain()
 
-
 if __name__ == "__main__":
    parser = argparse.ArgumentParser(description="Process external arguments")
    parser.add_argument("-listBlocks", action="store_true", help="List all blocks in chain")
